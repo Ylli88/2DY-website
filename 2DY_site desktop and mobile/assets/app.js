@@ -127,3 +127,127 @@
     if (window.innerWidth > 820) close();
   });
 })();
+
+// Slideshow functionality
+(() => {
+  const slideshows = document.querySelectorAll('.slideshow');
+  
+  slideshows.forEach(slideshow => {
+    const images = slideshow.querySelectorAll('.slideshow-images img');
+    const dots = slideshow.querySelectorAll('.slideshow-dot');
+    let currentIndex = 0;
+    let intervalId = null;
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    const showSlide = (index) => {
+      images.forEach((img, i) => {
+        img.classList.toggle('active', i === index);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+      currentIndex = index;
+    };
+    
+    const nextSlide = () => {
+      const next = (currentIndex + 1) % images.length;
+      showSlide(next);
+    };
+    
+    const prevSlide = () => {
+      const prev = (currentIndex - 1 + images.length) % images.length;
+      showSlide(prev);
+    };
+    
+    const startAutoplay = () => {
+      intervalId = setInterval(nextSlide, 3000);
+    };
+    
+    const stopAutoplay = () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+    };
+    
+    // Dot click handlers
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        stopAutoplay();
+        showSlide(index);
+        startAutoplay();
+      });
+    });
+    
+    // Touch/swipe handlers
+    slideshow.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      stopAutoplay();
+    }, { passive: true });
+    
+    slideshow.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+      startAutoplay();
+    }, { passive: true });
+    
+    const handleSwipe = () => {
+      const swipeThreshold = 50;
+      if (touchEndX < touchStartX - swipeThreshold) {
+        nextSlide();
+      }
+      if (touchEndX > touchStartX + swipeThreshold) {
+        prevSlide();
+      }
+    };
+    
+    // Mouse drag handlers for desktop
+    let isDragging = false;
+    let startX = 0;
+    
+    slideshow.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.pageX;
+      stopAutoplay();
+    });
+    
+    slideshow.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+    });
+    
+    slideshow.addEventListener('mouseup', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      const endX = e.pageX;
+      const diff = startX - endX;
+      const swipeThreshold = 50;
+      
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      }
+      startAutoplay();
+    });
+    
+    slideshow.addEventListener('mouseleave', () => {
+      if (isDragging) {
+        isDragging = false;
+        startAutoplay();
+      }
+    });
+    
+    // Start autoplay
+    startAutoplay();
+    
+    // Pause on hover
+    slideshow.addEventListener('mouseenter', stopAutoplay);
+    slideshow.addEventListener('mouseleave', () => {
+      if (!isDragging) startAutoplay();
+    });
+  });
+})();
