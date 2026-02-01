@@ -142,6 +142,22 @@
     let touchStartX = 0;
     let touchEndX = 0;
     
+    // Lazy load image when needed
+    const loadImage = (img) => {
+      if (img.dataset.src && !img.src) {
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+      }
+    };
+    
+    // Preload next and previous images
+    const preloadAdjacent = (index) => {
+      const next = (index + 1) % images.length;
+      const prev = (index - 1 + images.length) % images.length;
+      loadImage(images[next]);
+      loadImage(images[prev]);
+    };
+    
     const showSlide = (index) => {
       images.forEach((img, i) => {
         img.classList.toggle('active', i === index);
@@ -150,6 +166,10 @@
         dot.classList.toggle('active', i === index);
       });
       currentIndex = index;
+      
+      // Load current image and preload adjacent ones
+      loadImage(images[index]);
+      preloadAdjacent(index);
     };
     
     const nextSlide = () => {
