@@ -1,0 +1,13 @@
+# Backup files
+*.backup
+
+# Node modules
+node_modules/
+
+# Compression scripts (keep local only)
+compress-images.js
+compress-web.js
+
+# Package files
+package.json
+package-lock.json
