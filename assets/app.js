@@ -135,6 +135,8 @@
   slideshows.forEach(slideshow => {
     const images = slideshow.querySelectorAll('.slideshow-images img');
     const dots = slideshow.querySelectorAll('.slideshow-dot');
+    const prevBtn = slideshow.querySelector('.slideshow-prev');
+    const nextBtn = slideshow.querySelector('.slideshow-next');
     let currentIndex = 0;
     let intervalId = null;
     let touchStartX = 0;
@@ -179,6 +181,23 @@
         startAutoplay();
       });
     });
+    
+    // Arrow button handlers
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        stopAutoplay();
+        prevSlide();
+        startAutoplay();
+      });
+    }
+    
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        stopAutoplay();
+        nextSlide();
+        startAutoplay();
+      });
+    }
     
     // Touch/swipe handlers
     slideshow.addEventListener('touchstart', (e) => {
