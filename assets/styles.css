@@ -174,25 +174,53 @@ img{ max-width:100%; height:auto; display:block; }
   z-index:0;
 }
 @keyframes heroSlide{
-  0%, 23%{ 
-    background-image: url('./images/hekur.png'); 
-    transform: translateX(0);
+  0%, 5%{ 
+    background-image: url('./images/hekur/dyer\ metalike/15.png'); 
   }
-  25%, 48%{ 
-    background-image: url('./images/arkitekture.png'); 
-    transform: translateX(0);
+  6%, 11%{ 
+    background-image: url('./images/hekur/dyer\ metalike/16.png'); 
   }
-  50%, 73%{ 
-    background-image: url('./images/mirembajtje.png'); 
-    transform: translateX(0);
+  12%, 17%{ 
+    background-image: url('./images/hekur/dyer\ metalike/17.png'); 
   }
-  75%, 98%{ 
-    background-image: url('./images/projekte.png'); 
-    transform: translateX(0);
+  18%, 23%{ 
+    background-image: url('./images/hekur/dyer\ metalike/18.png'); 
   }
-  100%{ 
-    background-image: url('./images/hekur.png'); 
-    transform: translateX(0);
+  24%, 29%{ 
+    background-image: url('./images/hekur/konstruksione\ metalike/4.png'); 
+  }
+  30%, 35%{ 
+    background-image: url('./images/hekur/konstruksione\ metalike/5.png'); 
+  }
+  36%, 41%{ 
+    background-image: url('./images/hekur/konstruksione\ metalike/6.png'); 
+  }
+  42%, 47%{ 
+    background-image: url('./images/hekur/konstruksione\ metalike/7.png'); 
+  }
+  48%, 53%{ 
+    background-image: url('./images/hekur/konstruksione\ metalike/Untitled-1.png'); 
+  }
+  54%, 59%{ 
+    background-image: url('./images/hekur/konstruksione\ metalike/Untitled-2.png'); 
+  }
+  60%, 65%{ 
+    background-image: url('./images/hekur/rrethoje\ metalike/3.png'); 
+  }
+  66%, 71%{ 
+    background-image: url('./images/hekur/rrethoje\ metalike/8.png'); 
+  }
+  72%, 77%{ 
+    background-image: url('./images/hekur/rrethoje\ metalike/9.png'); 
+  }
+  78%, 83%{ 
+    background-image: url('./images/hekur/rrethoje\ metalike/10.png'); 
+  }
+  84%, 89%{ 
+    background-image: url('./images/hekur/rrethoje\ metalike/11.png'); 
+  }
+  90%, 100%{ 
+    background-image: url('./images/hekur/rrethoje\ metalike/12.png'); 
   }
 }
 .hero:after{
@@ -216,6 +244,18 @@ img{ max-width:100%; height:auto; display:block; }
   grid-template-columns: 1.15fr .85fr;
   gap: 22px;
   align-items: stretch;
+}
+
+.hero-logo{
+  position: absolute;
+  right: -80px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 320px;
+  height: 320px;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .kicker{
@@ -457,9 +497,8 @@ img{ max-width:100%; height:auto; display:block; }
   font-size: 16.5px; /* slightly bigger body */
 }
 
-/* Thumbs with your images + overlay */
 .thumb{
-  height: 1000px;
+  height: 420px; /* reduced from 1000px so thumbnails aren't huge on desktop */
   background-size: cover;
   background-position: center;
   border-bottom: var(--border2);
@@ -519,6 +558,33 @@ img{ max-width:100%; height:auto; display:block; }
 }
 .slideshow:active{
   cursor: grabbing;
+}
+
+/* Uniform sizing for service slideshows to avoid inconsistent crops */
+.card.service .slideshow{
+  max-width: none; /* fill the card column */
+  width: 100%;
+  height: auto; /* let aspect-ratio control height */
+  aspect-ratio: 4 / 3; /* consistent box that fills width */
+}
+.card.service .slideshow .slideshow-images img{
+  object-fit: cover; /* fill the box consistently */
+  width:100%;
+  height:100%;
+}
+
+/* Remove the dark decorative overlay for service slides so images show clearly */
+.card.service .slideshow:after{ background: none; }
+
+/* Smaller fixed height for the maintenance slideshow so images fit neatly */
+.slideshow[data-slideshow="mirembajtje"]{
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+/* Make mirembajte images fill the container without gaps */
+.slideshow[data-slideshow="mirembajtje"] .slideshow-images img{
+  object-fit: cover !important;
 }
 .slideshow-arrows{
   position: absolute;
@@ -595,7 +661,7 @@ img{ max-width:100%; height:auto; display:block; }
 
 .card.service{ grid-column: span 6; }
 .card.split{ grid-column: span 12; display:grid; grid-template-columns: 1.1fr .9fr; }
-.card.split .thumb{ height:auto; min-height: 1000px; }
+.card.split .thumb{ height:auto; min-height: 420px; }
 .card.split .pad{ padding: 22px; }
 
 .bullets{
@@ -942,6 +1008,8 @@ body.is-leaving .transition-overlay{ opacity:1; }
     padding: 22px 16px 16px;
     gap: 14px;
   }
+  /* make hero much shorter on phones so sections are visible without excessive scrolling */
+  .hero{ min-height: 320px; }
   .hero h1{ font-size: clamp(34px, 9vw, 54px); }
   .hero p{ font-size: 16px; }
   .hero-cta{ gap: 8px; }
@@ -957,7 +1025,14 @@ body.is-leaving .transition-overlay{ opacity:1; }
   .slideshow:active{ cursor: grabbing; }
   .slideshow-arrows{ display: none; }
   .card.split .slideshow{ height: auto; }
-  .card.split .thumb{ min-height: 340px; }
+  .card.split .thumb{ min-height: 220px; }
+  .thumb{ height: auto; }
+  /* ensure service thumbnails keep visible height on phones */
+  .card.service .thumb{ min-height: 220px; }
+  /* make slideshow images fill their container on small screens */
+  .slideshow-images img{ object-fit: cover; }
+  /* smaller maintenance slideshow on phones */
+  .slideshow[data-slideshow="mirembajtje"]{ max-width: 100%; height: 220px; max-height: 220px; }
 
   /* footer */
   .footer-grid{ flex-direction: column; align-items: flex-start; gap: 20px; }

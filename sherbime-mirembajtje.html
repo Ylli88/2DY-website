@@ -33,25 +33,17 @@
   <main class="container">
     <a class="mobile-back" href="index.html">← Ballina</a>
 <section class="hero fade-in">
-      <div class="lines" aria-hidden="true"></div>
-      <div class="hero-inner">
+      <div class="lines" aria-hidden="true"></div>      <img src="./assets/logo.png" alt="" class="hero-logo" />      <div class="hero-inner">
         <div>
           <div class="kicker"><span class="dot"></span> Preventive • riparime • servisim</div>
           <h1>MIRËMBAJTJE <span class="outline">E</span> OBJEKTEVE</h1>
           <p>Mirëmbajtje për elemente metalike dhe hapësira — për të ruajtur sigurinë dhe funksionin.</p>
           <div class="hero-cta">
-            <a class="btn primary" href="#kontakt">Na kontakto <svg width="16" height="16"><use href="#i-arrow"/></svg></a>
+
             <a class="btn" href="#sherbime">Shiko më poshtë</a>
           </div>
         </div>
-        <aside class="meta-card">
-          <h3>Shpejt & saktë</h3>
-          <ul>
-            <li><b>Minimal</b> Dizajn i mprehtë, fokus në cilësi</li>
-            <li><b>Profesional</b> Dokumentim dhe ekzekutim i pastër</li>
-            <li><b>Koordinim</b> Afate + komunikim transparent</li>
-          </ul>
-        </aside>
+        
       </div>
     </section>
 
@@ -61,18 +53,41 @@
         <div class="line"></div>
       </div>
       <div class="grid">
-        <div class="card split fade-in" data-tilt="1">
-          <div class="thumb mirembajtje" aria-hidden="true"></div>
+        <div class="card split fade-in overlay" data-tilt="1">
+          <div class="slideshow" data-slideshow="mirembajtje">
+            <div class="slideshow-images">
+              <img src="./assets/images/mirembajte/istockphoto-1982133786-612x612.jpg" alt="Mirëmbajtje 1" class="active" />
+              <img data-src="./assets/images/mirembajte/Willow+Home+-+Subscription+Home+Maintenance.webp" alt="Mirëmbajtje 2" loading="lazy" />
+              <img data-src="./assets/images/mirembajtje_01.png" alt="Mirëmbajtje 3" loading="lazy" />
+              <img data-src="./assets/images/mirembajtje_02.png" alt="Mirëmbajtje 4" loading="lazy" />
+            </div> 
+            <div class="slideshow-arrows">
+              <button class="slideshow-arrow slideshow-prev" aria-label="Previous">
+                <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <button class="slideshow-arrow slideshow-next" aria-label="Next">
+                <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="slideshow-nav">
+              <span class="slideshow-dot active" data-index="0"></span>
+              <span class="slideshow-dot" data-index="1"></span>
+              <span class="slideshow-dot" data-index="2"></span>
+               <span class="slideshow-dot" data-index="3"></span>
+            </div>
+          </div>
           <div class="pad">
             <div class="tag">Mirëmbajtje</div>
             <div class="title">Servisim & riparime</div>
-            <p class="body">Ndërhyrje preventive ose urgjente për funksion dhe siguri afatgjatë.</p>
+            <p class="body">Ofrojmë inspektime të detajuara dhe diagnoza të shpejta për të identifikuar problemet para se të bëhen kritike. Kryejmë ndërhyrje preventive, zëvendësim pjesësh dhe riparime në vend me saldim profesional dhe rregullime mekanike, si dhe trajtime mbrojtëse kundër korrozionit për të zgjatur jetën e elementeve. Për klientët ofrojmë plane mirëmbajtjeje me kontrolle periodike, dokumentim dhe raportim transparent të punimeve. Reagojmë për ndërhyrje urgjente me ekip të pajisur për montim dhe rikthim funksional në vend, dhe sigurojmë testim dhe verifikim pas riparimit. Prioriteti ynë është siguria, funksionaliteti dhe zgjidhjet e qëndrueshme — të përshtatura për banesa, biznese dhe ambiente industriale.</p>
             <ul class="bullets"><li>Inspektim</li><li>Riparim / zëvendësim</li><li>Rregullime mekanike</li></ul>
             <div style="margin-top:14px;"><a class="btn primary" href="index.html#kontakt">Kërko ofertë <svg width="16" height="16"><use href="#i-arrow"/></svg></a></div>
           </div>
         </div>
       </div>
     </section>
+
+   
 
     <section class="section" id="kontakt">
       <div class="section-head">
@@ -92,7 +107,7 @@
               <li><b>FADIL REXHAJ</b></li>
               <li><a href="mailto:fadilrexhaj.b.i@gmail.com">fadilrexhaj.b.i@gmail.com</a></li>
               <li><a href="tel:+38348140354">+38348140354</a></li>
-              <li>@2DY</li>
+              <li><img src="./assets/logo.png" alt="2DY" style="height: 20px;" /></li>
             </ul>
 
             <div class="social" aria-label="Social">
@@ -107,10 +122,7 @@
 
     <footer class="footer">
       <div class="footer-grid">
-        <div>
-          <h4>2DY</h4>
-          <p>Shërbime profesionale me hekur, arkitekturë, mirëmbajtje dhe menaxhim projektesh me dizajn minimal dhe ekzekutim të saktë.</p>
-        </div>
+      
         <div class="small" style="display: flex; align-items: center; gap: 8px; opacity: 0.6; color: rgba(53,53,53,.65);">
           <span>made by</span>
           <img src="./assets/images/Kera black and white.png" alt="Firm Logo" style="height: 20px; width: auto; opacity: 0.7;" />
